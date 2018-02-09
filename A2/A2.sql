@@ -92,3 +92,6 @@ SELECT AuthorID,COUNT(*) AS "Books Written" FROM Writes WHERE CAST(AuthorID as T
 WITH results AS (WITH author_c AS (WITH book_c AS (SELECT isbn FROM Textbook t WHERE t.Subject LIKE 'C%') SELECT * from book_c INNER JOIN Writes ON book_c.isbn = Writes.isbn) SELECT * FROM author_c INNER JOIN Author ON Author.authorid = author_c.authorid) SELECT Address AS "Author address where textbook subject starts with C" FROM results;
 
 CREATE VIEW AuthorInfo (FirstName)  AS SELECT a.name FROM Author A;
+
+-- List the publishers whose total price of published books is greater than 2500
+SELECT P FROM Publisher P, Published_By R, Book B WHERE P.pid = R.pid AND B.isbn = R.isbn GROUP BY P HAVING SUM(CAST(B.price AS DECIMAL)) > 2500;
