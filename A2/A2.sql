@@ -94,4 +94,4 @@ WITH results AS (WITH author_c AS (WITH book_c AS (SELECT isbn FROM Textbook t W
 CREATE VIEW AuthorInfo (FirstName)  AS SELECT a.name FROM Author A;
 
 -- List the publishers whose total price of published books is greater than 2500
-SELECT P FROM Publisher P, Published_By R, Book B WHERE P.pid = R.pid AND B.isbn = R.isbn GROUP BY P HAVING SUM(CAST(B.price AS DECIMAL)) > 2500;
+SELECT p FROM Publisher p, Published_By r, Book b WHERE p.pid = r.pid AND b.isbn = r.isbn GROUP BY p HAVING SUM(CAST(b.price AS DECIMAL)) > 2500;
